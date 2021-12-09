@@ -14,6 +14,7 @@
     <None Remove="clipboard.png" />
     <None Remove="menu.ico" />
     <None Remove="menu.png" />
+    <None Remove="README.md" />
   </ItemGroup>
 
   <ItemGroup>
