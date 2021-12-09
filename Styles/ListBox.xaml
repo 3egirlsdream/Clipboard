@@ -1,0 +1,55 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:ex="clr-namespace:Clipboards.Styles"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="./CloseButton.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="UserInfoStyle" TargetType="{x:Type ex:ListBoxItemEx}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate x:Name="ct" TargetType="{x:Type ex:ListBoxItemEx}">
+                    <Border Height="60" x:Name="grid" Margin="0 4" BorderThickness="1" MinWidth="300" Background="#fff" CornerRadius="5" HorizontalAlignment="Left">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button x:Name="closeBtn" Grid.Row="0" Style="{DynamicResource CloseButtonStyle}" Width="10" Height="10" HorizontalAlignment="Right" Opacity="1" VerticalAlignment="Top" Margin="1" Background="Transparent" Panel.ZIndex="4"/>
+                            <TextBlock x:Name="tb" Background="#FFF" TextWrapping="Wrap" Grid.RowSpan="2" Width="{Binding ElementName=grid, Path=MinWidth}" Visibility="{Binding TextVisible}" Text="{Binding Text}" FontSize="12" Height="45" Margin="5 2" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <Image x:Name="img" Grid.RowSpan="2" Source="{Binding Image}" Width="{Binding ElementName=grid, Path=MinWidth}" Visibility="{Binding ImageVisible}" VerticalAlignment="Center" HorizontalAlignment="Left" Height="45" Margin="5 2"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="grid" Property="BorderThickness" Value="1"/>
+                            <Setter TargetName="grid" Property="BorderBrush" Value="Gray"/>
+                        </Trigger>
+                        <!--<Trigger Property="Selector.IsSelected" Value="true">
+                            <Setter TargetName="grid" Property="Background" Value="#fae388"/>
+                        </Trigger>-->
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ListBoxStyle" TargetType="{x:Type ex:ListBoxEx}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ex:ListBoxEx}">
+                    <Border x:Name="Bd"  BorderBrush="{TemplateBinding BorderBrush}" 
+                                            MinWidth="{Binding ElementName=win, Path=Width}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        Background="{TemplateBinding Background}"
+                                                        Padding="0">
+                        <ScrollViewer Focusable="False">
+                            <ItemsPresenter MinWidth="{Binding ElementName=win, Path=Width}" x:Name="ItemsPresenter"/>
+                        </ScrollViewer>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
